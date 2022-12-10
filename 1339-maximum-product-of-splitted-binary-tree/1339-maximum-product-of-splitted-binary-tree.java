@@ -22,7 +22,7 @@ class Solution {
         DFS(root);
         cutNode(root);
         
-        return (int) (answer % (1e9 + 7));
+        return (int) (answer % (1e+9 + 7));
     }
     
     public void DFS(TreeNode node) {
