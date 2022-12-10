@@ -14,37 +14,24 @@
  * }
  */
 class Solution {    
-    int max = Integer.MIN_VALUE;
-    Map<Integer, List<Integer>> values = new HashMap<>();
+    int answer = Integer.MIN_VALUE;
     
     public int maxAncestorDiff(TreeNode root) {
-        values.put(root.val, new ArrayList<>());
-        DFS(root.val, root);
+        DFS(root, root.val, root.val);
         
-        for (int key : values.keySet()) {
-            for (int n : values.get(key)) {
-                max = Math.max(max, Math.abs(key - n));
-            }
-        }
-        
-        return max;
+        return answer;
     }
     
-    public void DFS(int parent, TreeNode node) {
+    public void DFS(TreeNode node, int max, int min) {
         if (node == null) {
             return;
         }
-        if (!values.containsKey(parent)) {
-            values.put(parent, new ArrayList<>());
-        }
-        if (node.left == null && node.right == null) {
-            values.get(parent).add(node.val);
-            return;
-        }
+        int newMax = Math.max(max, node.val);
+        int newMin = Math.min(min, node.val);
         
-        DFS(node.val, node.left);
-        DFS(node.val, node.right);
-        values.get(parent).add(node.val);
-        values.get(parent).addAll(values.get(node.val));
+        answer = Math.max(answer, Math.abs(newMax - newMin));
+        
+        DFS(node.left, newMax, newMin);
+        DFS(node.right, newMax, newMin);
     }
 }
