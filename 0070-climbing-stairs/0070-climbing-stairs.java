@@ -1,5 +1,4 @@
-class Solution {
-    
+class Solution {  
     public int climbStairs(int n) {
         if (n < 3) {
             return n;
