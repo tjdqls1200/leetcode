@@ -2,11 +2,6 @@ class MyQueue {
     Stack<Integer> in = new Stack<>();
     Stack<Integer> out = new Stack<>();
     
-    public MyQueue() {
-        // 3 2 1
-        // 1 2 3
-    }
-    
     public void push(int x) {
         in.push(x);
     }
@@ -19,11 +14,9 @@ class MyQueue {
         return popNum;
     }
     
-    private void change(Stack in, Stack out) {
-        int size =  in.size();
-        
-        for (int i = 0; i < size; i++) {
-            out.push(in.pop());
+    private void change(Stack a, Stack b) {
+        while (!a.isEmpty()) {
+            b.push(a.pop());
         }
     }
     
